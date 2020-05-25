@@ -5,13 +5,14 @@
 
 #include "statement.h"
 
+// PATH_TO_JSON : exported path from pre-definition
 struct StatementTest : public testing::Test {
     Json::Value invoices;
     Json::Value plays;
 
     StatementTest() {
         std::ifstream ifs;
-        std::string jsonPath(PATH_TO_JSON);
+        std::string jsonPath = PATH_TO_JSON;
         jsonPath += "/invoices.json";
         ifs.open(jsonPath.c_str());
         if (!ifs.is_open()) {
@@ -26,7 +27,7 @@ struct StatementTest : public testing::Test {
         ifs.close();
 
         jsonPath = PATH_TO_JSON;
-        jsonPath += "/invoices.json";
+        jsonPath += "/plays.json";
         ifs.open(jsonPath.c_str());
         if (!ifs.is_open()) {
             std::cout << "failed to open plays.json" << std::endl;
@@ -36,13 +37,13 @@ struct StatementTest : public testing::Test {
         }
         ifs.close();
     }
-    // PATH_TO_JSON : exported path from pre-definition
     void SetUp() override {}
     void TearDown() override {}
 };
 
 TEST_F(StatementTest, ParseJSON) {
-    EXPECT_STREQ(statement(invoices, plays).c_str(), "ok");
+    std::string result = statement(invoices, plays);
+    EXPECT_NO_THROW();
 }
 
 int main(int argc, char* argv[]) {

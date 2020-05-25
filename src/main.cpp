@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
     ifs.close();
 
     jsonPath = PATH_TO_JSON;
-    jsonPath += "/invoices.json";
+    jsonPath += "/plays.json";
     ifs.open(jsonPath.c_str());
     if (!ifs.is_open()) {
         std::cout << "failed to open plays.json" << std::endl;

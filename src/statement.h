@@ -4,6 +4,6 @@
 #include <string>
 #include <json/json.h>
 
-std::string statement(Json::Value& invoice, Json::Value& plays);
+std::string statement(Json::Value const& invoice, Json::Value const& plays);
 
 #endif

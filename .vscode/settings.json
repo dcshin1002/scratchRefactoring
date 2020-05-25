@@ -1,4 +1,8 @@
 {
     "cmake.configureOnOpen": true,
+	"cmake.generator": "MinGW Makefiles",
+    "cmake.preferredGenerators": [
+        "MinGW Makefiles",
+    ],
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }
