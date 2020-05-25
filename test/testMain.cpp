@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 
-#include "statement.h"
+#include "Statement.h"
 
 // PATH_TO_JSON : exported path from pre-definition
 struct StatementTest : public testing::Test {
@@ -11,31 +11,13 @@ struct StatementTest : public testing::Test {
     Json::Value plays;
 
     StatementTest() {
-        std::ifstream ifs;
-        std::string jsonPath = PATH_TO_JSON;
-        jsonPath += "/invoices.json";
-        ifs.open(jsonPath.c_str());
-        if (!ifs.is_open()) {
-            std::cout << "failed to open invoices.json" << std::endl;
-        }
+        std::string invoicesJson(PATH_TO_JSON);
+        invoicesJson.append("/invoices.json");
+        invoices = getJson(invoicesJson);
 
-        Json::CharReaderBuilder builder;
-        JSONCPP_STRING errs;
-        if (!parseFromStream(builder, ifs, &invoices, &errs)) {
-            std::cout << errs << std::endl;
-        }
-        ifs.close();
-
-        jsonPath = PATH_TO_JSON;
-        jsonPath += "/plays.json";
-        ifs.open(jsonPath.c_str());
-        if (!ifs.is_open()) {
-            std::cout << "failed to open plays.json" << std::endl;
-        }
-        if (!parseFromStream(builder, ifs, &plays, &errs)) {
-            std::cout << errs << std::endl;
-        }
-        ifs.close();
+        std::string playsJson(PATH_TO_JSON);
+        playsJson.append("/plays.json");
+        plays = getJson(playsJson);
     }
     void SetUp() override {}
     void TearDown() override {}

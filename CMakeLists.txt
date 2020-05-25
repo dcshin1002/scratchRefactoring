@@ -51,11 +51,16 @@ endif()
 # create common variable
 #
 add_definitions("-DPATH_TO_JSON=\"${PROJECT_SOURCE_DIR}/json\"")
-file(GLOB MY_SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp
-     ${PROJECT_SOURCE_DIR}/json/jsoncpp/jsoncpp.cpp)
+file(GLOB MY_SRCS 
+    ${PROJECT_SOURCE_DIR}/src/Main.cpp
+    ${PROJECT_SOURCE_DIR}/src/Statement.cpp
+    ${PROJECT_SOURCE_DIR}/json/jsoncpp/jsoncpp.cpp)
 set(MY_INCLUDES ${PROJECT_SOURCE_DIR}/src ${PROJECT_SOURCE_DIR}/json/jsoncpp)
 
+
+#
 # Enable testing for the project
+#
 enable_testing()
 
 #
